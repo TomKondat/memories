@@ -7,6 +7,9 @@ import {
   Button,
   Typography,
 } from "@material-ui/core";
+import ThumbUpAltIcon from "@material-ui/icons/ThumbUpAlt";
+import DeleteIcon from "@material-ui/icons/Delete";
+import MoreHorizIcon from "@material-ui/icons/MoreHoriz";
 import useStyles from "./styles";
 import moment from "moment";
 
@@ -31,7 +34,7 @@ const Post = ({ post }) => {
       </div>
       <div className={classes.overlay2}>
         <Button style={{ color: "white" }} size="small" onClick={() => {}}>
-          icon
+          <MoreHorizIcon fontSize="default" />
         </Button>
       </div>
       <div className={classes.details}>
@@ -46,11 +49,13 @@ const Post = ({ post }) => {
       </CardContent>
       <CardActions className={classes.cardActions}>
         <Button size="small" color="primary" onClick={() => {}}>
+          <ThumbUpAltIcon fontSize="small" />
           Like
           {post.likeCount}
         </Button>
 
         <Button size="small" color="primary" onClick={() => {}}>
+          <DeleteIcon fontSize="small" />
           Delete
         </Button>
       </CardActions>
