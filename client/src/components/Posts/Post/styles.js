@@ -44,7 +44,7 @@ export default makeStyles({
   title: {
     padding: "0 16px",
     fontFamily: "serif",
-    color: "#69ACC2",
+    fontWeight: "bold",
   },
   cardActions: {
     padding: "0 16px 8px 16px",

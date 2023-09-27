@@ -9,7 +9,24 @@ const Posts = ({ setCurrentId }) => {
   const classes = useStyles();
 
   return !posts.length ? (
-    <CircularProgress />
+    <Grid
+      container
+      alignItems="center"
+      justifyContent="center"
+      style={{ minHeight: "50vh" }}
+    >
+      <Grid item>
+        <CircularProgress
+          size={60}
+          thickness={5}
+          style={{
+            borderRadius: "50%",
+            color: "skyblue ",
+            background: "rgba(0, 0, 0, 0.3)",
+          }}
+        />
+      </Grid>
+    </Grid>
   ) : (
     <Grid
       className={classes.container}
