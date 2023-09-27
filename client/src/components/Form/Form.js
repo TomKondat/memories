@@ -32,6 +32,7 @@ const Form = ({ currentId, setCurrentId }) => {
     }
     clear();
   };
+
   const clear = () => {
     setCurrentId(null);
     setPostData({
@@ -42,6 +43,7 @@ const Form = ({ currentId, setCurrentId }) => {
       selectedFile: "",
     });
   };
+
   return (
     <Paper className={classes.paper}>
       <form
@@ -51,10 +53,10 @@ const Form = ({ currentId, setCurrentId }) => {
         onSubmit={handleSubmit}
       >
         <Typography variant="h6">
-          {currentId ? "Editing a Memory" : "Creating a Memory"}
+          {currentId ? "Edit Memory" : "Create Memory"}
         </Typography>
         <TextField
-          name="createor"
+          name="creator"
           variant="outlined"
           label="Creator"
           fullWidth
@@ -84,14 +86,14 @@ const Form = ({ currentId, setCurrentId }) => {
         <TextField
           name="tags"
           variant="outlined"
-          label="Tags"
+          label="Tags (comma-separated)"
           fullWidth
           value={postData.tags}
           onChange={(e) =>
             setPostData({ ...postData, tags: e.target.value.split(",") })
           }
         />
-        <div className="classes.fileInput">
+        <div className={classes.fileInput}>
           <FileBase
             type="file"
             multiple={false}
@@ -108,7 +110,7 @@ const Form = ({ currentId, setCurrentId }) => {
           type="submit"
           fullWidth
         >
-          Submit
+          {currentId ? "Update" : "Submit"}
         </Button>
         <Button
           variant="contained"
