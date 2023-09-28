@@ -24,32 +24,35 @@ export default makeStyles((theme) => ({
   },
   buttonSubmit: {
     marginBottom: 10,
-    background: "transparent", // Set the background to transparent
-    color: "#336699", // Change the text color to an orange shade
-    border: "2px solid #336699", // Add an orange border
+    background: "transparent",
+    color: "#336699",
+    border: "2px solid #336699",
     borderRadius: "15px",
-    transition: "0.5s", // Add a smooth transition effect
+    transition: "0.5s",
     "&:hover": {
-      background: "#336699", // Change the background color on hover
-      color: "white", // Change the text color on hover
+      background: "#336699",
+      color: "white",
     },
   },
   buttonClear: {
-    background: "transparent", // Set the background to transparent
-    color: "#DC3125", // Change the text color to an orange shade
-    border: "2px solid #DC3125", // Add an orange border
+    background: "transparent",
+    color: "#DC3125",
+    border: "2px solid #DC3125",
     borderRadius: "15px",
-    transition: "0.5s", // Add a smooth transition effect
+    transition: "0.5s",
     "&:hover": {
-      background: "#DC3125", // Change the background color on hover
-      color: "white", // Change the text color on hover
+      background: "#DC3125",
+      color: "white",
     },
   },
   formTitle: {
     textAlign: "center",
-    color: "#69ACC2",
     fontWeight: "bold",
     fontFamily: "serif",
     fontSize: "2rem",
+    letterSpacing: "1px",
+    WebkitTextFillColor: "transparent",
+    background: "linear-gradient(to right, #4ABFAB, #369DC3)",
+    WebkitBackgroundClip: "text",
   },
 }));

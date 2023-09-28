@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, AppBar, Typography, Grow, Grid } from "@material-ui/core";
-import memories from "./images/memories_logo.png";
+import memories from "./images/sweetmemories2.png";
 import { getPosts } from "./actions/posts";
 import Posts from "./components/Posts/Posts";
 import Form from "./components/Form/Form";
@@ -17,7 +17,13 @@ const App = () => {
 
   return (
     <Container maxWidth="lg">
-      <AppBar className={classes.appBar} position="static" color="inherit">
+      <AppBar className={classes.appBar} position="static">
+        <img
+          className={classes.image}
+          src={memories}
+          alt="memories"
+          height="50"
+        />
         <Typography className={classes.heading} variant="h3" align="center">
           Memories
         </Typography>
