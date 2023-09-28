@@ -32,6 +32,7 @@ const Form = ({ currentId, setCurrentId }) => {
     }
     clear();
   };
+
   const clear = () => {
     setCurrentId(null);
     setPostData({
@@ -42,6 +43,7 @@ const Form = ({ currentId, setCurrentId }) => {
       selectedFile: "",
     });
   };
+
   return (
     <Paper className={classes.paper}>
       <form
@@ -50,11 +52,11 @@ const Form = ({ currentId, setCurrentId }) => {
         className={`${classes.root} ${classes.form}`}
         onSubmit={handleSubmit}
       >
-        <Typography variant="h6">
-          {currentId ? "Editing a Memory" : "Creating a Memory"}
+        <Typography variant="h6" className={classes.formTitle}>
+          {currentId ? "Edit Memory" : "Create Memory"}
         </Typography>
         <TextField
-          name="createor"
+          name="creator"
           variant="outlined"
           label="Creator"
           fullWidth
@@ -62,6 +64,7 @@ const Form = ({ currentId, setCurrentId }) => {
           onChange={(e) =>
             setPostData({ ...postData, creator: e.target.value })
           }
+          margin="dense"
         />
         <TextField
           name="title"
@@ -70,6 +73,7 @@ const Form = ({ currentId, setCurrentId }) => {
           fullWidth
           value={postData.title}
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
+          margin="dense"
         />
         <TextField
           name="message"
@@ -80,18 +84,20 @@ const Form = ({ currentId, setCurrentId }) => {
           onChange={(e) =>
             setPostData({ ...postData, message: e.target.value })
           }
+          margin="dense"
         />
         <TextField
           name="tags"
           variant="outlined"
-          label="Tags"
+          label="Tags (comma-separated)"
           fullWidth
           value={postData.tags}
           onChange={(e) =>
             setPostData({ ...postData, tags: e.target.value.split(",") })
           }
+          margin="dense"
         />
-        <div className="classes.fileInput">
+        <div className={classes.fileInput}>
           <FileBase
             type="file"
             multiple={false}
@@ -100,23 +106,10 @@ const Form = ({ currentId, setCurrentId }) => {
             }
           />
         </div>
-        <Button
-          className={classes.buttonSubmit}
-          variant="contained"
-          color="primary"
-          size="large"
-          type="submit"
-          fullWidth
-        >
-          Submit
+        <Button className={classes.buttonSubmit} type="submit" fullWidth>
+          {currentId ? "Update" : "Submit"}
         </Button>
-        <Button
-          variant="contained"
-          color="secondary"
-          size="small"
-          onClick={clear}
-          fullWidth
-        >
+        <Button className={classes.buttonClear} onClick={clear} fullWidth>
           Clear
         </Button>
       </form>
