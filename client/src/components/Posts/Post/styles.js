@@ -20,7 +20,7 @@ export default makeStyles({
     borderRadius: "15px",
     height: "100%",
     position: "relative",
-    boxShadow: "lightblue 0px 0px 20px 0px",
+    boxShadow: "white 0px 0px 20px 0px",
   },
   overlay: {
     position: "absolute",

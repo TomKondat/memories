@@ -11,6 +11,7 @@ export default makeStyles((theme) => ({
     borderRadius: "15px",
     backgroundColor: "#f5f5f5",
     boxShadow: "white 0px 0px 10px 0px",
+    border: "3px solid lightgrey",
   },
   form: {
     display: "flex",
