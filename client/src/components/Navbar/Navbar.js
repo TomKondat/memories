@@ -12,7 +12,6 @@ const Navbar = () => {
   const classes = useStyles();
   const location = useLocation();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
-  console.log(user);
 
   useEffect(() => {
     const token = user?.token;
