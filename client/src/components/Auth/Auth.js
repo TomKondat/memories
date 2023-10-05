@@ -16,6 +16,16 @@ import { gapi } from "gapi-script";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import Box from "@material-ui/core/Box";
+import { signin, signup } from "../../actions/auth";
+
+const initialState = {
+  firstName: "",
+  lastName: "",
+  email: "",
+  password: "",
+  confirmPassword: "",
+};
+
 const Auth = () => {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -28,11 +38,25 @@ const Auth = () => {
 
     gapi.load("client:auth2", start);
   }, []);
+  const [formData, setFormData] = useState(initialState);
   const navigate = useNavigate();
   const classes = useStyles();
   const [isSignup, setIsSignup] = useState(false);
-  const handleSubmit = () => {};
-  const handleChange = () => {};
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (isSignup) {
+      dispatch(signup(formData, navigate));
+    } else {
+      dispatch(signin(formData, navigate));
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
   const handleShowPassword = () =>
     setShowPassword((prevShowPassword) => !prevShowPassword);
   const [showPassword, setShowPassword] = useState(false);
@@ -120,7 +144,7 @@ const Auth = () => {
           </Button>
 
           <GoogleLogin
-            clientId="" // Your Client ID here
+            clientId="261247071953-idctnutr5g8imkfqpb2k7ugtct12ia9i.apps.googleusercontent.com" // Your Client ID here
             render={(renderProps) => (
               <Button
                 className={classes.googleButton}
