@@ -48,7 +48,7 @@ const Navbar = () => {
     }
 
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [location]);
+  }, [location, user?.token]);
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
@@ -123,7 +123,7 @@ const Navbar = () => {
             onClick={handleDeleteConfirm}
             autoFocus
           >
-            Delete
+            Logout
           </Button>
         </DialogActions>
       </Dialog>
