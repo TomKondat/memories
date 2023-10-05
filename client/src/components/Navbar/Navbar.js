@@ -1,5 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { AppBar, Avatar, Toolbar, Typography, Button } from "@material-ui/core";
+import {
+  AppBar,
+  Avatar,
+  Toolbar,
+  Typography,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import memories from "../../images/sweetmemories2.png";
 import useStyles from "./styles";
@@ -13,6 +24,20 @@ const Navbar = () => {
   const classes = useStyles();
   const location = useLocation();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
+
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleDeleteConfirm = () => {
+    logout();
+    setOpen(false);
+  };
 
   useEffect(() => {
     const token = user?.token;
@@ -58,7 +83,7 @@ const Navbar = () => {
             <Typography className={classes.userName} variant="h6">
               {user?.result.name}
             </Typography>
-            <Button className={classes.logout} onClick={logout}>
+            <Button className={classes.logout} onClick={handleClickOpen}>
               Logout
             </Button>
           </div>
@@ -74,6 +99,34 @@ const Navbar = () => {
           </Button>
         )}
       </Toolbar>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        className={classes.dialog}
+      >
+        <DialogTitle id="alert-dialog-title">Confirm Logout</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to logout?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button variant="contained" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button
+            color="secondary"
+            variant="contained"
+            onClick={handleDeleteConfirm}
+            autoFocus
+          >
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </AppBar>
   );
 };

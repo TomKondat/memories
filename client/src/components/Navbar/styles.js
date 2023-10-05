@@ -83,4 +83,15 @@ export default makeStyles((theme) => ({
     fontSize: "1.5rem",
     margin: "0px 0px 0px 60px",
   },
+  dialog: {
+    "& .MuiDialog-paper": {
+      borderRadius: "15px",
+      backgroundColor: "#f5f5f5",
+      boxShadow: "red 0px 0px 20px 0px",
+      position: "fixed",
+      top: "40%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+    },
+  },
 }));
