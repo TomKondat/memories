@@ -87,7 +87,7 @@ export default makeStyles((theme) => ({
     "& .MuiDialog-paper": {
       borderRadius: "15px",
       backgroundColor: "#f5f5f5",
-      boxShadow: "red 0px 0px 20px 0px",
+      boxShadow: "red 0px 0px 10px 0px",
       position: "fixed",
       top: "40%",
       left: "50%",

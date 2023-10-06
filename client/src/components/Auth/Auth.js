@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Avatar,
@@ -171,7 +171,7 @@ const Auth = () => {
               >
                 {isSignup
                   ? "Already have an account? Sign In"
-                  : "Dont have an account Sign Up"}
+                  : "Don't have an account? Sign Up"}
               </Button>
             </Grid>
           </Grid>

@@ -13,7 +13,7 @@ const Posts = ({ setCurrentId }) => {
       container
       alignItems="center"
       justifyContent="center"
-      style={{ minHeight: "50vh" }}
+      style={{ minHeight: "65vh" }}
     >
       <Grid item>
         <CircularProgress
@@ -21,8 +21,9 @@ const Posts = ({ setCurrentId }) => {
           thickness={5}
           style={{
             borderRadius: "50%",
-            color: "skyblue ",
-            background: "rgba(0, 0, 0, 0.3)",
+            color: "#B7F4FF ",
+            background: "rgba(0, 0, 0, 0.2)",
+            boxShadow: "white 0px 0px 10px 0px",
           }}
         />
       </Grid>
