@@ -26,10 +26,12 @@ export default makeStyles((theme) => ({
     marginTop: theme.spacing(3),
   },
   submit: {
-    margin: theme.spacing(3, 0, 2),
     background: "transparent",
-    color: "#336699",
     border: "2px solid #336699",
+    color: "#336699",
+    marginTop: theme.spacing(3),
+    flex: 1,
+    fontSize: "11.5px",
     borderRadius: "5px",
     transition: "0.5s",
     "&:hover": {
@@ -39,12 +41,29 @@ export default makeStyles((theme) => ({
   },
   googleButton: {
     borderRadius: "5px",
-    marginBottom: theme.spacing(2),
     backgroundColor: "#4285F4",
     color: "#FFFFFF",
-    marginBottom: theme.spacing(2),
+    flex: 1,
+    marginLeft: "6px",
+    fontSize: "11.5px",
+    padding: "12px 30px",
+    marginTop: theme.spacing(3),
     "&:hover": {
       backgroundColor: "#357AE8",
+    },
+  },
+  accountButton: {
+    marginTop: theme.spacing(2),
+    background: "transparent",
+    color: "#FF5733",
+    border: "2px solid #FF5733",
+    borderRadius: "5px",
+    transition: "0.5s",
+    fontWeight: "bold",
+
+    "&:hover": {
+      background: "#FF5733",
+      color: "white",
     },
   },
 }));

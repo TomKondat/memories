@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from "react";
-import { AppBar, Avatar, Toolbar, Typography, Button } from "@material-ui/core";
+import {
+  AppBar,
+  Avatar,
+  Toolbar,
+  Typography,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+} from "@material-ui/core";
 import { Link } from "react-router-dom";
 import memories from "../../images/sweetmemories2.png";
 import useStyles from "./styles";
 import { useDispatch } from "react-redux";
 import { useNavigate, useLocation } from "react-router-dom";
+import decode from "jwt-decode";
 
 const Navbar = () => {
   const navigate = useNavigate();
@@ -13,15 +25,36 @@ const Navbar = () => {
   const location = useLocation();
   const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")));
 
+  const [open, setOpen] = React.useState(false);
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleDeleteConfirm = () => {
+    logout();
+    setOpen(false);
+  };
+
   useEffect(() => {
     const token = user?.token;
+
+    if (token) {
+      const decodedToken = decode(token);
+      if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+    }
+
     setUser(JSON.parse(localStorage.getItem("profile")));
-  }, [location]);
+  }, [location, user?.token]);
 
   const logout = () => {
     dispatch({ type: "LOGOUT" });
     navigate("/");
     setUser(null);
+    window.location.reload();
   };
 
   return (
@@ -50,7 +83,7 @@ const Navbar = () => {
             <Typography className={classes.userName} variant="h6">
               {user?.result.name}
             </Typography>
-            <Button className={classes.logout} onClick={logout}>
+            <Button className={classes.logout} onClick={handleClickOpen}>
               Logout
             </Button>
           </div>
@@ -66,6 +99,34 @@ const Navbar = () => {
           </Button>
         )}
       </Toolbar>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+        className={classes.dialog}
+      >
+        <DialogTitle id="alert-dialog-title">Confirm Logout</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to logout?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button variant="contained" onClick={handleClose}>
+            Cancel
+          </Button>
+          <Button
+            color="secondary"
+            variant="contained"
+            onClick={handleDeleteConfirm}
+            autoFocus
+          >
+            Logout
+          </Button>
+        </DialogActions>
+      </Dialog>
     </AppBar>
   );
 };

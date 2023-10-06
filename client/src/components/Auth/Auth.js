@@ -1,4 +1,4 @@
-import react, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   Avatar,
@@ -15,7 +15,6 @@ import Icon from "./icon";
 import { gapi } from "gapi-script";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import Box from "@material-ui/core/Box";
 import { signin, signup } from "../../actions/auth";
 
 const initialState = {
@@ -31,7 +30,8 @@ const Auth = () => {
   useEffect(() => {
     function start() {
       gapi.client.init({
-        clientId: "", // Your Client ID here
+        clientId:
+          "261247071953-idctnutr5g8imkfqpb2k7ugtct12ia9i.apps.googleusercontent.com", // Your Client ID here
         scope: "email",
       });
     }
@@ -133,50 +133,45 @@ const Auth = () => {
             )}
           </Grid>
 
-          <Button
-            className={classes.submit}
-            type="submit"
-            fullWidth
-            variant="contained"
-            color="primary"
-          >
-            {isSignup ? "Sign Up" : "Sign In"}
-          </Button>
+          <div style={{ display: "flex", justifyContent: "space-between" }}>
+            <Button
+              className={classes.submit}
+              type="submit"
+              variant="contained"
+              color="primary"
+            >
+              {isSignup ? "Sign Up" : "Sign In"}
+            </Button>
 
-          <GoogleLogin
-            clientId="261247071953-idctnutr5g8imkfqpb2k7ugtct12ia9i.apps.googleusercontent.com" // Your Client ID here
-            render={(renderProps) => (
-              <Button
-                className={classes.googleButton}
-                fullWidth
-                onClick={renderProps.onClick}
-                disabled={renderProps.disabled}
-                startIcon={<Icon />}
-                variant="contained"
-              >
-                Google Sign In&nbsp;
-                {/* <Box
-                  component="img"
-                  sx={{
-                    height: 25,
-                    width: 25,
-                  }}
-                  alt="The house from the offer."
-                  src="https://www.svgrepo.com/show/303108/google-icon-logo.svg"
-                /> */}
-              </Button>
-            )}
-            onSuccess={googleSuccess}
-            onFailure={googleFailure}
-            cookiePolicy="single_host_origin"
-          />
+            <GoogleLogin
+              clientId="261247071953-idctnutr5g8imkfqpb2k7ugtct12ia9i.apps.googleusercontent.com"
+              render={(renderProps) => (
+                <Button
+                  className={classes.googleButton}
+                  onClick={renderProps.onClick}
+                  disabled={renderProps.disabled}
+                  startIcon={<Icon />}
+                  variant="contained"
+                >
+                  Google Sign In
+                </Button>
+              )}
+              onSuccess={googleSuccess}
+              onFailure={googleFailure}
+              cookiePolicy="single_host_origin"
+            />
+          </div>
 
-          <Grid container justifyContent="flex-end">
+          <Grid>
             <Grid item>
-              <Button onClick={switchMode}>
+              <Button
+                className={classes.accountButton}
+                fullWidth
+                onClick={switchMode}
+              >
                 {isSignup
                   ? "Already have an account? Sign In"
-                  : "Dont have an account Sign Up"}
+                  : "Don't have an account? Sign Up"}
               </Button>
             </Grid>
           </Grid>
